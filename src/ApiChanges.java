@@ -1,3 +1,8 @@
+import java.math.RoundingMode;
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -15,7 +20,8 @@ public class ApiChanges {
 //            findSumOfMinAndMax()
 //                exceptionally()
 //                exceptionallyAsync()
-                exceptionallyCompose()
+//                exceptionallyCompose()
+                numFormat()
         );
         executorService.shutdown();
     }
@@ -62,7 +68,37 @@ public class ApiChanges {
     }
 
     //compact number format
+    public static String numFormat(){
+        final long numberToFormat = 15500;
 
+        return List.of(
+                Locale.US,
+                Locale.UK,
+                Locale.GERMANY,
+                Locale.ITALY,
+                Locale.FRANCE,
+                new Locale("uk", "ua"),
+                new Locale("pl", "pl")
+        ).stream()
+                .flatMap(locale -> Stream.of(
+                        String.format("%s short: %s",
+                                locale.getCountry(),
+                                getShortNumberFormat(locale).format(numberToFormat)),
+                        String.format("%s  long: %s",
+                                locale.getCountry(),
+                                getLongNumberFormat(locale).format(numberToFormat))))
+                .collect(Collectors.joining("\n"));
+    }
 
+    private static NumberFormat getShortNumberFormat(Locale locale) {
+        NumberFormat compactNumberInstance = NumberFormat.getCompactNumberInstance(locale, NumberFormat.Style.SHORT);
+        compactNumberInstance.setMaximumFractionDigits(1);
+        return compactNumberInstance;
+    }
+    private static NumberFormat getLongNumberFormat(Locale locale) {
+        NumberFormat compactNumberInstance = NumberFormat.getCompactNumberInstance(locale, NumberFormat.Style.LONG);
+        compactNumberInstance.setMaximumFractionDigits(1);
+        return compactNumberInstance;
+    }
     //files mismatch
 }
