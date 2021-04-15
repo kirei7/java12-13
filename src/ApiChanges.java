@@ -109,10 +109,10 @@ public class ApiChanges {
 
     //file mismatch
     public static String fileMismatch() throws IOException {
-        Long pos = Files.mismatch(
+        long pos = Files.mismatch(
                 Paths.get("src/file1.txt"),
                 Paths.get("src/file2.txt"));
         byte[] bytes = Files.readAllBytes(Paths.get("src/file2.txt"));
-        return new String(Arrays.copyOfRange(bytes, pos.intValue() -1, bytes.length));
+        return new String(Arrays.copyOfRange(bytes, (int) pos -1, bytes.length));
     }
 }
