@@ -4,28 +4,14 @@ public class SwitchExpressions {
 
     public static void main(String[] args) {
         System.out.println(
-//        test12(-1)
-//        test13(-1)
+        test13(-1)
 //                testFallThrough(-1)
 //                testThrow(-5)
 //                testArrowSyntax(-5)
 //                testPolyExpression(-5)
-                testStatement(-5)
+//                testStatement(-5)
         );
     }
-
-    //java 12
-//    public static String test12(int arg) {
-//        return switch (arg) {
-//            case -1:
-//                break "Break case";
-//            case 0, 1, 2:
-//                break  "Multiple labels case";
-//            default:
-//                int mul = arg * 2;
-//                break Integer.toString(mul);
-//        };
-//    }
 
     //java 13
     public static String test13(int arg) {

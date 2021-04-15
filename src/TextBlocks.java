@@ -2,13 +2,13 @@ import java.util.Objects;
 
 public class TextBlocks {
     public static void main(String[] args) {
-//        Tuple strings = helloWorld();
+        Tuple strings = helloWorld();
 //        Tuple strings = helloWorldDelimiterNewLine();
 //        Tuple strings = helloWorldTrailingSpace();
 //        Tuple strings = helloWorldWithTabWhitespace();
 //        Tuple strings = helloWorldWithTabEscaped();
 //        Tuple strings = helloWorldQuotationMarksEscaped();
-        Tuple strings = helloWorldWindowsLineEnding();
+//        Tuple strings = helloWorldWindowsLineEnding();
 
         String rd = "\n" + "=".repeat(30) + "\n";
         System.out.printf("Text block:%s%s%s\n", rd, strings.textBlock, rd);

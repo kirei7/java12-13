@@ -8,7 +8,7 @@
 public class PreviewFeature {
     public static void main(String[] args) {
         System.out.println(
-                test(-1)
+//                test(-1)
         );
     }
 
@@ -22,8 +22,4 @@ public class PreviewFeature {
 //                break "Any other";
 //        };
 //    }
-
-    public static String test(int arg) {
-        return "";
-    }
 }
