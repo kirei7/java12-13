@@ -11,10 +11,10 @@ public class TextBlocks {
         Tuple strings = helloWorldWindowsLineEnding();
 
         String rd = "\n" + "=".repeat(30) + "\n";
-        System.out.printf("Text block:%s%s%s\n", rd, strings.textBlock(), rd);
-        if (!Objects.equals(strings.textBlock(), strings.plainString()))
+        System.out.printf("Text block:%s%s%s\n", rd, strings.textBlock, rd);
+        if (!Objects.equals(strings.textBlock, strings.plainString))
             System.out.printf("Strings are not equals. Plain string:%s%s%s\n", rd, strings.plainString, rd);
-        if ( !(strings.textBlock() == strings.plainString()) )
+        if ( !(strings.textBlock == strings.plainString) )
             System.out.printf("Strings are not equals. Plain string:%s%s%s\n", rd, strings.plainString, rd);
 
     }
@@ -99,6 +99,13 @@ public class TextBlocks {
         );
     }
 
+    static class Tuple {
+        String textBlock;
+        String plainString;
 
-    private record Tuple(String textBlock, String plainString){}
+        Tuple(String textBlock, String plainString) {
+            this.textBlock = textBlock;
+            this.plainString = plainString;
+        }
+    }
 }
