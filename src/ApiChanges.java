@@ -1,5 +1,10 @@
+import java.io.IOException;
 import java.math.RoundingMode;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.NumberFormat;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -15,13 +20,14 @@ public class ApiChanges {
 
     static ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(String[] args) throws ExecutionException, InterruptedException, IOException {
         System.out.println(
 //            findSumOfMinAndMax()
 //                exceptionally()
 //                exceptionallyAsync()
 //                exceptionallyCompose()
-                numFormat()
+//                numFormat()
+        fileMismatch()
         );
         executorService.shutdown();
     }
@@ -99,5 +105,14 @@ public class ApiChanges {
         NumberFormat compactNumberInstance = NumberFormat.getCompactNumberInstance(locale, NumberFormat.Style.LONG);
         compactNumberInstance.setMaximumFractionDigits(1);
         return compactNumberInstance;
+    }
+
+    //file mismatch
+    public static String fileMismatch() throws IOException {
+        Long pos = Files.mismatch(
+                Paths.get("src/file1.txt"),
+                Paths.get("src/file2.txt"));
+        byte[] bytes = Files.readAllBytes(Paths.get("src/file2.txt"));
+        return new String(Arrays.copyOfRange(bytes, pos.intValue() -1, bytes.length));
     }
 }
